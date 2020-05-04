@@ -8,14 +8,14 @@ app.use(cors());
 const { db } = require('./util/admin');
 
 const {
-  getAllScreams,
+  getAllTests,
   // postOneScream,
   // getScream,
   // commentOnScream,
   // likeScream,
   // unlikeScream,
   // deleteScream
-} = require('./handlers/screams');
+} = require('./handlers/tests');
 // const {
 //   signup,
 //   login,
@@ -27,7 +27,8 @@ const {
 // } = require('./handlers/users');
 
 // Scream routes
-app.get('/screams', getAllScreams);
+app.get('/tests', getAllTests);
+// app.get('/screams', getAllScreams);
 // app.post('/scream', FBAuth, postOneScream);
 // app.get('/scream/:screamId', getScream);
 // app.delete('/scream/:screamId', FBAuth, deleteScream);
@@ -44,11 +45,10 @@ app.get('/screams', getAllScreams);
 // app.get('/user/:handle', getUserDetails);
 // app.post('/notifications', FBAuth, markNotificationsRead);
 
-exports.api = functions.region('europe-west1').https.onRequest(app);
+exports.api = functions.https.onRequest(app);
 
-/** */
+/** 
 exports.createNotificationOnLike = functions
-  .region('europe-west1')
   .firestore.document('likes/{id}')
   .onCreate((snapshot) => {
     return db
@@ -73,7 +73,7 @@ exports.createNotificationOnLike = functions
   });
 /** */
 
-/** */
+/** 
 exports.deleteNotificationOnUnLike = functions
   .region('europe-west1')
   .firestore.document('likes/{id}')
@@ -88,7 +88,7 @@ exports.deleteNotificationOnUnLike = functions
   });
 /** */
 
-/** */
+/** 
 exports.createNotificationOnComment = functions
   .region('europe-west1')
   .firestore.document('comments/{id}')
@@ -118,7 +118,7 @@ exports.createNotificationOnComment = functions
   });
 /** */
 
-/** */
+/** 
 exports.onUserImageChange = functions
   .region('europe-west1')
   .firestore.document('/users/{userId}')
