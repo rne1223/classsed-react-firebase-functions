@@ -1,15 +1,21 @@
 const { db } = require('../util/admin');
 
+exports.helloWorld = (req,res) =>{
+  console.log("hello there");
+  res.json("hithere");
+}
+
 exports.getAllTests = async (req, res) => {
   try {
       // get the docs from collection screams
-      const data = await db.collection("test").orderBy('createdAt', 'desc').get();
+      const data = await db.collection("tests").orderBy('createdAt', 'desc').get();
       const tests= [];
       for(const doc of data.docs) {
           // Adding to screams
           tests.push({
-            text: doc.data().text,
-             createdAt: doc.data().createdAt
+            comment: doc.data().comment,
+            createdAt: doc.data().createdAt,
+            examData: doc.data().examData
             //  screamId: doc.id,
             //  body: doc.data().body,
             //  userHandle: doc.data().userHandle,
@@ -24,6 +30,7 @@ exports.getAllTests = async (req, res) => {
     return res.status(500).send(err);
   }
 }
+
 // exports.getTest= (req, res) => {
 //   db.collection('screams')
 //     .orderBy('createdAt', 'desc')

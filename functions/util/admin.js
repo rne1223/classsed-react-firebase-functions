@@ -4,4 +4,8 @@ admin.initializeApp();
 
 const db = admin.firestore();
 
-module.exports = { admin, db };
+const firebase = require("firebase");
+const config = require("./config");
+firebase.initializeApp(config);
+
+module.exports = { admin, db, firebase };

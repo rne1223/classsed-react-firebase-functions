@@ -9,6 +9,7 @@ const { db } = require('./util/admin');
 
 const {
   getAllTests,
+  helloWorld
   // postOneScream,
   // getScream,
   // commentOnScream,
@@ -16,18 +17,20 @@ const {
   // unlikeScream,
   // deleteScream
 } = require('./handlers/tests');
-// const {
-//   signup,
-//   login,
+
+const {
+  signup
+  // login,
 //   uploadImage,
 //   addUserDetails,
 //   getAuthenticatedUser,
 //   getUserDetails,
 //   markNotificationsRead
-// } = require('./handlers/users');
+} = require('./handlers/users');
 
 // Scream routes
 app.get('/tests', getAllTests);
+app.post('/helloWorld', helloWorld);
 // app.get('/screams', getAllScreams);
 // app.post('/scream', FBAuth, postOneScream);
 // app.get('/scream/:screamId', getScream);
@@ -37,7 +40,7 @@ app.get('/tests', getAllTests);
 // app.post('/scream/:screamId/comment', FBAuth, commentOnScream);
 
 // users routes
-// app.post('/signup', signup);
+app.post('/signup', signup);
 // app.post('/login', login);
 // app.post('/user/image', FBAuth, uploadImage);
 // app.post('/user', FBAuth, addUserDetails);
