@@ -1,4 +1,5 @@
-const { admin, db, firebase } = require("../util/admin");
+const { admin, db, firebase} = require("../util/admin");
+require('firebase/auth');
 const { uuid } = require("uuidv4");
 
 const {
@@ -22,12 +23,10 @@ exports.signup = async(req, res) => {
 
   if (!valid) return res.status(400).json(errors);
 
-  // // const noImg = "no-img.png";
-  // // let token, userId;
-
+  // // const noImg = "no-img.png"; // // let token, userId; 
   try {
     // get the docs from collection screams
-    const username = await db.collection("patients").doc(`${userData.username}`).get();
+    const username = await db.doc(`/patients/${userData.username}`).get();
 
     // If username exist return error  
     if (username.exists) {
@@ -49,7 +48,6 @@ exports.signup = async(req, res) => {
       };
       // Store userdata into Firestore DB
       await db.doc(`/patients/${userData.username}`).set(userCredentials);
-      // // return the user token
 
       return res.status(201).json({ token });
     }

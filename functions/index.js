@@ -9,7 +9,7 @@ const { db } = require('./util/admin');
 
 const {
   getAllTests,
-  helloWorld
+  postOneTest,
   // postOneScream,
   // getScream,
   // commentOnScream,
@@ -30,7 +30,7 @@ const {
 
 // Scream routes
 app.get('/tests', getAllTests);
-app.post('/helloWorld', helloWorld);
+app.post('/test', FBAuth, postOneTest);
 // app.get('/screams', getAllScreams);
 // app.post('/scream', FBAuth, postOneScream);
 // app.get('/scream/:screamId', getScream);
